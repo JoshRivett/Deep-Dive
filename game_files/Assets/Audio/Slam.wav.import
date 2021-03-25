@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Slam.wav-fb5532850c7f8bbdc0e49368dc1cec96.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Slam.wav"
+dest_files=[ "res://.import/Slam.wav-fb5532850c7f8bbdc0e49368dc1cec96.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

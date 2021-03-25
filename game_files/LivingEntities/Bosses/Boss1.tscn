@@ -1,0 +1,101 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://LivingEntities/Bosses/Boss.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossShootForwards/BossShootForwards_0001.png" type="Texture" id=2]
+[ext_resource path="res://LivingEntities/Bosses/Boss1_v2.gd" type="Script" id=3]
+[ext_resource path="res://Bullets/BossBullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycle/BossWalkCycle_0005.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycleShoot/BossWalkCycleShoot_0003.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossShootForwards/BossShootForwards_0000.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycle/BossWalkCycle_0000.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycle/BossWalkCycle_0002.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossDeath/BossDeath_0001.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycle/BossWalkCycle_0003.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycleShoot/BossWalkCycleShoot_0001.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycleShoot/BossWalkCycleShoot_0005.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossDeath/BossDeath_0000.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycleShoot/BossWalkCycleShoot_0002.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycleShoot/BossWalkCycleShoot_0004.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycleShoot/BossWalkCycleShoot_0000.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycle/BossWalkCycle_0004.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Graphics/Bosses/Boss1/BossWalkCycle/BossWalkCycle_0001.png" type="Texture" id=19]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "dead",
+"speed": 7.5
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "walkCycleShoot",
+"speed": 7.5
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "falling",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 19 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 18 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walkCycle",
+"speed": 7.5
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "shootForwards",
+"speed": 7.5
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 196.778, 206.51 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 551.66, 69.534 )
+
+[node name="Boss1" instance=ExtResource( 1 )]
+collision_mask = 3
+script = ExtResource( 3 )
+Bullet = ExtResource( 4 )
+
+[node name="Animation" parent="." index="0"]
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="RightBarrel" type="Position2D" parent="Animation" index="0"]
+position = Vector2( 262, 4 )
+
+[node name="LeftBarrel" type="Position2D" parent="Animation" index="1"]
+position = Vector2( -259.05, 1.89471 )
+
+[node name="DownLeftBarrel" type="Position2D" parent="Animation" index="2"]
+position = Vector2( -107.472, 229.262 )
+
+[node name="DownRightBarrel" type="Position2D" parent="Animation" index="3"]
+position = Vector2( 151.474, 229.262 )
+
+[node name="Collision" parent="." index="1"]
+position = Vector2( 0, 0 )
+shape = SubResource( 2 )
+
+[node name="SlamArea" type="Area2D" parent="." index="2"]
+position = Vector2( 0.121095, -0.641225 )
+collision_layer = 4
+collision_mask = 2
+
+[node name="SlamCollision" type="CollisionShape2D" parent="SlamArea" index="0"]
+position = Vector2( 0, 161.179 )
+shape = SubResource( 3 )
+
+[node name="AttackTimer" type="Timer" parent="." index="3"]
+
+[node name="GunTimer" type="Timer" parent="." index="4"]
+[connection signal="body_entered" from="SlamArea" to="." method="_on_SlamArea_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
+[connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Font/openSans.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://UI/UICommandHandler.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Tilesets/BackgroundTiles.tres" type="TileSet" id=4]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UICommandHandler" parent="." instance=ExtResource( 3 )]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -249.0
+margin_top = -114.5
+margin_right = 249.0
+margin_bottom = 316.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 105.0
+margin_top = 58.0
+margin_right = 392.0
+margin_bottom = 372.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_right = 287.0
+margin_bottom = 102.0
+custom_fonts/font = ExtResource( 1 )
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 106.0
+margin_right = 287.0
+margin_bottom = 208.0
+custom_fonts/font = ExtResource( 1 )
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 212.0
+margin_right = 287.0
+margin_bottom = 314.0
+custom_fonts/font = ExtResource( 1 )
+text = "Quit"
+
+[node name="Background" type="TileMap" parent="."]
+z_index = -10
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 256, 256 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

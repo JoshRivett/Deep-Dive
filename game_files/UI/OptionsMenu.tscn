@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Font/openSans.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Tilesets/BackgroundTiles.tres" type="TileSet" id=2]
+[ext_resource path="res://UI/UICommandHandler.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/OptionsMenu.gd" type="Script" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UICommandHandler" parent="." instance=ExtResource( 3 )]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 1048.0
+margin_top = 513.0
+margin_right = 1511.0
+margin_bottom = 927.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 463.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 1 )
+text = "Options"
+align = 1
+
+[node name="Fullscreen" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 100.0
+margin_right = 463.0
+margin_bottom = 202.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Fullscreen"]
+margin_top = 3.0
+margin_right = 357.0
+margin_bottom = 99.0
+custom_fonts/font = ExtResource( 1 )
+text = "Fullscreen"
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/Fullscreen"]
+margin_left = 361.0
+margin_right = 463.0
+margin_bottom = 102.0
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = true
+text = "     "
+
+[node name="Controls" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 206.0
+margin_right = 463.0
+margin_bottom = 308.0
+custom_fonts/font = ExtResource( 1 )
+text = "Controls"
+
+[node name="Back" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 312.0
+margin_right = 463.0
+margin_bottom = 414.0
+custom_fonts/font = ExtResource( 1 )
+text = "Back"
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -10
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 256, 256 )
+format = 1
+tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0 )
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Fullscreen/Button" to="." method="_on_Fullscreen_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Controls" to="." method="_on_Controls_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Back" to="." method="_on_Back_pressed"]
